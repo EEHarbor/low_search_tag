@@ -36,7 +36,7 @@ class Low_search_tag_ext {
 	 * @access      public
 	 * @var         string
 	 */
-	public $version = '0.9.0';
+	public $version = '0.9.1';
 
 	/**
 	 * Extension description
@@ -173,6 +173,7 @@ class Low_search_tag_ext {
 		{
 			if (preg_match('/^(tag_(id|name)):?([a-z0-9\-_]*)$/i', $key, $match))
 			{
+				$val = $this->_require_all_value($key, $val);
 				$val = $this->_exclude_value($key, $val);
 
 				$array = ($match[2] == 'id') ? 'tag_ids' : 'tag_names';
@@ -431,6 +432,25 @@ class Low_search_tag_ext {
 			if (in_array($key, $fields) && substr($val, 0, 4) != 'not ')
 			{
 				$val = 'not '.$val;
+			}
+		}
+
+		return $val;
+	}
+
+	/**
+	 * Check if given key is in the require_all="" parameter
+	 */
+	private function _require_all_value($key, $val)
+	{
+		if ( ! empty($this->params['require_all']))
+		{
+			list($fields, $in) = low_explode_param($this->params['require_all']);
+
+			if (in_array($key, $fields))
+			{
+				$amp = (substr($key, 0, 7) == 'search:') ? '&&' : '&';
+				$val = str_replace('|', $amp, $val);
 			}
 		}
 
