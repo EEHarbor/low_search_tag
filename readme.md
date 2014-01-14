@@ -4,7 +4,7 @@ An ExpressionEngine add-on for extended Low Search and Solspace Tag compatibilit
 
 ## Compatibility & Requirements
 
-Low Search Tag is compatible with **EE 2.4+** and requires **Low Search 2.2+** and **Solspace Tag 4+**.
+Low Search Tag is compatible with **EE 2.4+** and requires **Low Search 2.2+ to 3.0.3** and **Solspace Tag 4+**. Not needed for Low Search 3.0.4, as the [Tags filter](http://gotolow.com/addons/low-search/docs/filters#tags) is built in.
 
 ## Installation
 
